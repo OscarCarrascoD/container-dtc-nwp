@@ -46,8 +46,8 @@ RUN mkdir -p /gsi/libs/cmake/BUILD_DIR \
 
 # Build HDF5 libraries
 # Why does bitbucket make this so hard? Is a tarball link too much to ask for???
-RUN yum -y install git
-RUN source /opt/rh/devtoolset-7/enable \
+RUN yum -y install git \
+ && source /opt/rh/devtoolset-7/enable \
  && mkdir -p /gsi/libs/hdf5/BUILD_DIR \
  && cd /gsi/libs/hdf5/BUILD_DIR \
  && git clone https://bitbucket.hdfgroup.org/scm/hdffv/hdf5.git \
@@ -55,8 +55,8 @@ RUN source /opt/rh/devtoolset-7/enable \
  && git checkout hdf5-1_10_4 \
  && ./configure --enable-fortran --enable-cxx --prefix=/usr/local/ \
  && make install \
- && rm -rf /gsi/libs/hdf5/BUILD_DIR
-RUN yum -y erase git
+ && rm -rf /gsi/libs/hdf5/BUILD_DIR \
+ && yum -y erase git
 ENV LD_LIBRARY_PATH /usr/local/lib
 
 # Build netCDF C and Fortran libraries
