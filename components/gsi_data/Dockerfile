@@ -1,8 +1,8 @@
-FROM ubuntu:latest
+FROM centos:latest
 MAINTAINER Michael Kavulich <kavulich@ucar.edu>
 #
-RUN apt update
-RUN apt -y install wget
+RUN yum -y update
+RUN yum -y install wget
 RUN mkdir /gsi_data
 #
 # Get GSI tutorial data
@@ -12,7 +12,9 @@ RUN mkdir /gsi_data
 # && tar -xf /gsi_data/gsi_obs.tar -C /gsi_data/
 #
 # Download CRTM files
-RUN wget https://dtcenter.org/com-GSI/users/downloads/GSI_releases/CRTM_v2.3.0.tar.gz -P /gsi_data/ \
- && tar -xf /gsi_data/CRTM_v2.3.0.tar.gz -C /gsi_data/
+RUN cd /gsi_data/ \
+ && curl -L -O https://dtcenter.org/com-GSI/users/downloads/GSI_releases/CRTM_v2.3.0.tar.gz \
+ && tar -xf CRTM_v2.3.0.tar.gz \
+ && rm CRTM_v2.3.0.tar.gz
 VOLUME /gsi_data
 CMD ["true"]
