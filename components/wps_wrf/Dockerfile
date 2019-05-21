@@ -67,6 +67,7 @@ ENV PATH  /usr/lib64/openmpi/bin:$PATH
 #
 # copy in a couple custom scripts
 #
+RUN ls -laF
 COPY docker-clean /wrf
 #### KATE TODO: CHANGE RUN SCRIPT NAME #####
 COPY run-wps-wrf /wrf
