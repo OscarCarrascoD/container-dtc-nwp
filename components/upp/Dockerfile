@@ -60,6 +60,7 @@ ENV PATH  /usr/lib64/bin:$PATH
 #
 # copy in a couple custom scripts
 #
+RUN ls -laF
 COPY run-upp /upp
 RUN chmod +x /upp/run-upp
 #
